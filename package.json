@@ -1,5 +1,5 @@
 {
-	"name": "auth-bff-client",
+	"name": "@cig-platform/auth-bff-client",
 	"version": "0.0.1",
 	"description": "",
 	"main": "build/index.js",
