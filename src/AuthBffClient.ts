@@ -6,7 +6,11 @@ export interface PostUserRequestSuccess extends AppRequest {
   user: IUser;
 }
 
-export interface PostUserRequestError extends AppRequest {
+export interface AuthUserRequestSuccess extends AppRequest {
+  token: string;
+}
+
+export interface AppRequestError extends AppRequest {
   error: ApiError
 }
 
@@ -33,7 +37,21 @@ export default class AuthBffClient {
     } catch (error) {
       if (!axios.isAxiosError(error)) return null;
 
-      const bodyData = error.response?.data as PostUserRequestError;
+      const bodyData = error.response?.data as AppRequestError;
+
+      return bodyData;
+    }
+  }
+
+  async authUser(email: string, password: string) {
+    try {
+      const { data } = await this._axiosAuthBffInstance.post<AuthUserRequestSuccess>('/v1/auth', { email, password });
+
+      return data;
+    } catch (error) {
+      if (!axios.isAxiosError(error)) return null;
+
+      const bodyData = error.response?.data as AppRequestError;
 
       return bodyData;
     }
