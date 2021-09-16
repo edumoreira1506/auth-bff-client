@@ -1,0 +1,35 @@
+{
+	"name": "auth-bff-client",
+	"version": "0.0.1",
+	"description": "",
+	"main": "build/index.js",
+	"types": "build/index.d.ts",
+	"scripts": {
+		"build": "babel src --extensions \".ts\" --out-dir build --copy-files --no-copy-ignored && tsc --declaration --emitDeclarationOnly",
+		"prepare": "npm run build",
+		"version": "git add -A src",
+		"postversion": "git push && git push --tags",
+		"lint": "eslint src",
+		"test": "jest src/tests"
+	},
+	"repository": {},
+	"author": "Eduardo Moreira",
+	"license": "ISC",
+	"bugs": {},
+	"homepage": "",
+	"dependencies": {},
+	"devDependencies": {
+		"@babel/cli": "^7.14.8",
+		"@babel/core": "^7.14.8",
+		"@babel/node": "^7.14.7",
+		"@babel/plugin-syntax-flow": "^7.14.5",
+		"@babel/preset-env": "^7.15.0",
+		"@babel/preset-typescript": "^7.15.0",
+		"@typescript-eslint/eslint-plugin": "^4.29.1",
+		"@typescript-eslint/parser": "^4.29.1",
+		"babel-plugin-module-resolver": "^4.1.0",
+		"eslint": "^7.32.0",
+		"jest": "^27.0.6",
+		"typescript": "^4.3.5"
+	}
+}
