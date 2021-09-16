@@ -1,17 +1,20 @@
 import axios, { AxiosInstance } from 'axios';
-import { IUser, IPoultry, AppRequest, ApiError } from '@cig-platform/core';
+import { IUser, IPoultry, ApiError } from '@cig-platform/core';
 
-export interface PostUserRequestSuccess extends AppRequest {
+export interface PostUserRequestSuccess {
+  ok: true;
   poultry: IPoultry;
   user: IUser;
 }
 
-export interface AuthUserRequestSuccess extends AppRequest {
+export interface AuthUserRequestSuccess {
+  ok: true;
   token: string;
 }
 
-export interface AppRequestError extends AppRequest {
-  error: ApiError
+export interface AppRequestError {
+  ok: false;
+  error: ApiError;
 }
 
 export default class AuthBffClient {
