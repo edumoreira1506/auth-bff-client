@@ -1,5 +1,5 @@
 {
-	"name": "auth-bff-client",
+	"name": "@cig-platform/auth-bff-client",
 	"version": "0.0.1",
 	"description": "",
 	"main": "build/index.js",
@@ -10,14 +10,17 @@
 		"version": "git add -A src",
 		"postversion": "git push && git push --tags",
 		"lint": "eslint src",
-		"test": "jest src/tests"
+		"test": "echo 'No tests configured'"
 	},
 	"repository": {},
 	"author": "Eduardo Moreira",
 	"license": "ISC",
 	"bugs": {},
 	"homepage": "",
-	"dependencies": {},
+	"dependencies": {
+		"@cig-platform/core": "^0.2.36",
+		"axios": "^0.21.4"
+	},
 	"devDependencies": {
 		"@babel/cli": "^7.14.8",
 		"@babel/core": "^7.14.8",
