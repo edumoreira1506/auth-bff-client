@@ -1,1 +1,1 @@
-export { default, AppRequestError, AuthUserRequestSuccess, PostUserRequestSuccess } from './AuthBffClient';
+export { default, AuthUserRequestSuccess, PostUserRequestSuccess } from './AuthBffClient';
