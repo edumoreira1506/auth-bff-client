@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { IUser, IPoultry, ApiError } from '@cig-platform/core';
+import { IUser, IPoultry, ErrorRequest } from '@cig-platform/types';
 
 export interface PostUserRequestSuccess {
   ok: true;
@@ -10,11 +10,6 @@ export interface PostUserRequestSuccess {
 export interface AuthUserRequestSuccess {
   ok: true;
   token: string;
-}
-
-export interface AppRequestError {
-  ok: false;
-  error: ApiError;
 }
 
 export default class AuthBffClient {
@@ -40,7 +35,7 @@ export default class AuthBffClient {
     } catch (error) {
       if (!axios.isAxiosError(error)) return null;
 
-      const bodyData = error.response?.data as AppRequestError;
+      const bodyData = error.response?.data as ErrorRequest;
 
       return bodyData;
     }
@@ -54,7 +49,7 @@ export default class AuthBffClient {
     } catch (error) {
       if (!axios.isAxiosError(error)) return null;
 
-      const bodyData = error.response?.data as AppRequestError;
+      const bodyData = error.response?.data as ErrorRequest;
 
       return bodyData;
     }
