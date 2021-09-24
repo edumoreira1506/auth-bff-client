@@ -1,6 +1,6 @@
 {
 	"name": "@cig-platform/auth-bff-client",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
@@ -18,7 +18,7 @@
 	"bugs": {},
 	"homepage": "",
 	"dependencies": {
-		"@cig-platform/types": "0.0.1",
+		"@cig-platform/types": "0.0.3",
 		"axios": "^0.21.4"
 	},
 	"devDependencies": {
