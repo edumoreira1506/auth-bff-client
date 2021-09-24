@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import { IUser, IPoultry, ErrorRequest } from '@cig-platform/types';
+import { IUser, IBreeder, ErrorRequest } from '@cig-platform/types';
 
 export interface PostUserRequestSuccess {
   ok: true;
-  poultry: IPoultry;
+  breeder: IBreeder;
   user: IUser;
 }
 
@@ -27,9 +27,9 @@ export default class AuthBffClient {
     });
   }
 
-  async registerUser(user: IUser, poultry: IPoultry) {
+  async registerUser(user: IUser, breeder: IBreeder) {
     try {
-      const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', { user, poultry });
+      const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', { user, breeder });
 
       return data;
     } catch (error) {
