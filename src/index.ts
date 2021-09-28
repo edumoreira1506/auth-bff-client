@@ -1,1 +1,1 @@
-export { default, AuthUserRequestSuccess, PostUserRequestSuccess } from './AuthBffClient';
+export { default, RequestSuccess, PostUserRequestSuccess } from './AuthBffClient';
