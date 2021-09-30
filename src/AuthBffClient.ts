@@ -55,6 +55,24 @@ export default class AuthBffClient {
     }
   }
 
+  async refreshToken(token: string) {
+    try {
+      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/refresh-token', null, {
+        headers: {
+          'X-Cig-Token': token
+        }
+      });
+
+      return data;
+    } catch (error) {
+      if (!axios.isAxiosError(error)) return null;
+
+      const bodyData = error.response?.data as ErrorRequest;
+
+      return bodyData;
+    }
+  }
+
   async editBreeder(breederId: string, token: string, breeder: Partial<IBreeder>) {
     try {
       const { data } = await this._axiosAuthBffInstance.patch<RequestSuccess>(`/v1/breeders/${breederId}`, { breeder }, {
