@@ -57,7 +57,7 @@ export default class AuthBffClient {
 
   async refreshToken(token: string) {
     try {
-      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/refresh-token', null, {
+      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/refresh-token', {}, {
         headers: {
           'X-Cig-Token': token
         }
