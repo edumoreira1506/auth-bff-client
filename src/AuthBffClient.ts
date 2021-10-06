@@ -9,6 +9,9 @@ export interface PostUserRequestSuccess {
 
 export interface RequestSuccess {
   ok: true;
+}
+
+export interface TokenRequestSuccess extends RequestSuccess {
   token: string;
 }
 
@@ -27,6 +30,20 @@ export default class AuthBffClient {
     });
   }
 
+  async recoverPassword(email: string) {
+    try {
+      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/v1/recover-password', { email });
+
+      return data;
+    } catch (error) {
+      if (!axios.isAxiosError(error)) return null;
+
+      const bodyData = error.response?.data as ErrorRequest;
+
+      return bodyData;
+    }
+  }
+
   async registerUser(user: IUser, breeder: IBreeder) {
     try {
       const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', { user, breeder });
@@ -43,7 +60,7 @@ export default class AuthBffClient {
 
   async authUser(email: string, password: string) {
     try {
-      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/v1/auth', { email, password });
+      const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', { email, password });
 
       return data;
     } catch (error) {
@@ -57,7 +74,7 @@ export default class AuthBffClient {
 
   async refreshToken(token: string) {
     try {
-      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/v1/refresh-token', {}, {
+      const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/refresh-token', {}, {
         headers: {
           'X-Cig-Token': token
         }
