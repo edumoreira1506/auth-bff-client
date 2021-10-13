@@ -89,4 +89,22 @@ export default class AuthBffClient {
       return bodyData;
     }
   }
+
+  async editPassword(password: string, confirmPassword: string, token: string) {
+    try {
+      const { data } = await this._axiosAuthBffInstance.patch('/v1/users/password', { password, confirmPassword }, {
+        headers: {
+          'X-Cig-Token': token
+        }
+      });
+
+      return data;
+    } catch (error) {
+      if (!axios.isAxiosError(error)) return null;
+
+      const bodyData = error.response?.data as ErrorRequest;
+
+      return bodyData;
+    }
+  }
 }
