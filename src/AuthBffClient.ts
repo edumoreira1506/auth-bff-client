@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
-import { IUser, IBreeder, ErrorRequest } from '@cig-platform/types';
+import { IUser, IBreeder } from '@cig-platform/types';
+import { RequestErrorHandler } from '@cig-platform/decorators';
 
 export interface PostUserRequestSuccess {
   ok: true;
@@ -30,63 +31,46 @@ export default class AuthBffClient {
     });
   }
 
+  @RequestErrorHandler()
   async recoverPassword(email: string) {
-    try {
-      const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/v1/recover-password', { email });
+    const { data } = await this._axiosAuthBffInstance.post<RequestSuccess>('/v1/recover-password', { email });
 
-      return data;
-    } catch (error) {
-      if (!axios.isAxiosError(error)) return null;
-
-      const bodyData = error.response?.data as ErrorRequest;
-
-      return bodyData;
-    }
+    return data;
   }
 
+  @RequestErrorHandler()
   async registerUser(user: IUser, breeder: IBreeder) {
-    try {
-      const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', { user, breeder });
+    const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', { user, breeder });
 
-      return data;
-    } catch (error) {
-      if (!axios.isAxiosError(error)) return null;
-
-      const bodyData = error.response?.data as ErrorRequest;
-
-      return bodyData;
-    }
+    return data;
   }
 
+  @RequestErrorHandler()
   async authUser(email: string, password: string) {
-    try {
-      const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', { email, password });
+    const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', { email, password });
 
-      return data;
-    } catch (error) {
-      if (!axios.isAxiosError(error)) return null;
-
-      const bodyData = error.response?.data as ErrorRequest;
-
-      return bodyData;
-    }
+    return data;
   }
 
+  @RequestErrorHandler()
   async refreshToken(token: string) {
-    try {
-      const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/refresh-token', {}, {
-        headers: {
-          'X-Cig-Token': token
-        }
-      });
+    const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/refresh-token', {}, {
+      headers: {
+        'X-Cig-Token': token
+      }
+    });
 
-      return data;
-    } catch (error) {
-      if (!axios.isAxiosError(error)) return null;
+    return data;
+  }
 
-      const bodyData = error.response?.data as ErrorRequest;
+  @RequestErrorHandler()
+  async editPassword(password: string, confirmPassword: string, token: string) {
+    const { data } = await this._axiosAuthBffInstance.patch('/v1/users/password', { password, confirmPassword }, {
+      headers: {
+        'X-Cig-Token': token
+      }
+    });
 
-      return bodyData;
-    }
+    return data;
   }
 }

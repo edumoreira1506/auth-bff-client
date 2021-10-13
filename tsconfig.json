@@ -17,6 +17,7 @@
     ],
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "experimentalDecorators": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src"
