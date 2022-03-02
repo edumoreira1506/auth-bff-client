@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { IUser, IBreeder } from '@cig-platform/types';
 import { RequestErrorHandler } from '@cig-platform/decorators';
+import { UserRegisterTypeEnum } from '@cig-platform/enums';
 
 export interface PostUserRequestSuccess {
   ok: true;
@@ -39,15 +40,25 @@ export default class AuthBffClient {
   }
 
   @RequestErrorHandler()
-  async registerUser(user: IUser, breeder: IBreeder) {
-    const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', { user, breeder });
+  async registerUser(user: IUser, breeder: IBreeder, type: string = UserRegisterTypeEnum.Default, externalid?: string) {
+    const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', {
+      user,
+      breeder,
+      type,
+      externalid
+    });
 
     return data;
   }
 
   @RequestErrorHandler()
-  async authUser(email: string, password: string) {
-    const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', { email, password });
+  async authUser(email: string, password: string, type: string = UserRegisterTypeEnum.Default, externalid?: string) {
+    const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', {
+      email,
+      password,
+      type,
+      externalid
+    });
 
     return data;
   }
