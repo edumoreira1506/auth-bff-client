@@ -40,24 +40,24 @@ export default class AuthBffClient {
   }
 
   @RequestErrorHandler()
-  async registerUser(user: IUser, breeder: IBreeder, type: string = UserRegisterTypeEnum.Default, externalid?: string) {
+  async registerUser(user: IUser, breeder: IBreeder, type: string = UserRegisterTypeEnum.Default, externalId?: string) {
     const { data } = await this._axiosAuthBffInstance.post<PostUserRequestSuccess>('/v1/users', {
       user,
       breeder,
       type,
-      externalid
+      externalId
     });
 
     return data;
   }
 
   @RequestErrorHandler()
-  async authUser(email: string, password: string, type: string = UserRegisterTypeEnum.Default, externalid?: string) {
+  async authUser(email: string, password: string, type: string = UserRegisterTypeEnum.Default, externalId?: string) {
     const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', {
       email,
       password,
       type,
-      externalid
+      externalId
     });
 
     return data;
