@@ -21,7 +21,7 @@
 		"@babel/plugin-proposal-decorators": "^7.15.8",
 		"@cig-platform/decorators": "0.0.1",
 		"@cig-platform/enums": "0.0.4",
-		"@cig-platform/types": "0.0.14",
+		"@cig-platform/types": "0.0.30",
 		"axios": "^0.21.4"
 	},
 	"devDependencies": {
