@@ -52,8 +52,13 @@ export default class AuthBffClient {
   }
 
   @RequestErrorHandler()
-  async authUser(email: string, password: string) {
-    const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', { email, password });
+  async authUser(email: string, password: string, type: string = UserRegisterTypeEnum.Default, externalid?: string) {
+    const { data } = await this._axiosAuthBffInstance.post<TokenRequestSuccess>('/v1/auth', {
+      email,
+      password,
+      type,
+      externalid
+    });
 
     return data;
   }
