@@ -1,6 +1,6 @@
 {
 	"name": "@cig-platform/auth-bff-client",
-	"version": "0.1.10",
+	"version": "0.1.11",
 	"description": "",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
@@ -18,24 +18,24 @@
 	"bugs": {},
 	"homepage": "",
 	"dependencies": {
-		"@babel/plugin-proposal-decorators": "^7.15.8",
-		"@cig-platform/decorators": "0.0.1",
-		"@cig-platform/enums": "0.0.4",
-		"@cig-platform/types": "0.0.30",
-		"axios": "^0.21.4"
+		"@babel/plugin-proposal-decorators": "^7.17.2",
+		"@cig-platform/decorators": "0.0.2",
+		"@cig-platform/enums": "0.0.5",
+		"@cig-platform/types": "0.0.34",
+		"axios": "^0.26.0"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.14.8",
-		"@babel/core": "^7.14.8",
-		"@babel/node": "^7.14.7",
-		"@babel/plugin-syntax-flow": "^7.14.5",
-		"@babel/preset-env": "^7.15.0",
-		"@babel/preset-typescript": "^7.15.0",
-		"@typescript-eslint/eslint-plugin": "^4.29.1",
-		"@typescript-eslint/parser": "^4.29.1",
+		"@babel/cli": "^7.17.6",
+		"@babel/core": "^7.17.5",
+		"@babel/node": "^7.16.8",
+		"@babel/plugin-syntax-flow": "^7.16.7",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-typescript": "^7.16.7",
+		"@typescript-eslint/eslint-plugin": "^5.14.0",
+		"@typescript-eslint/parser": "^5.14.0",
 		"babel-plugin-module-resolver": "^4.1.0",
-		"eslint": "^7.32.0",
-		"jest": "^27.0.6",
-		"typescript": "^4.3.5"
+		"eslint": "^8.10.0",
+		"jest": "^27.5.1",
+		"typescript": "^4.6.2"
 	}
 }
