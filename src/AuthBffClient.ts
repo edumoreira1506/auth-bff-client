@@ -18,6 +18,18 @@ export interface TokenRequestSuccess extends RequestSuccess {
   token: string;
 }
 
+interface GetProfileRequestSuccess {
+  ok: true;
+  user: {
+    name: string;
+    email: string;
+    birthDate: string | null;
+    register: string | null;
+    externalid: string | null;
+    id: string;
+  }
+}
+
 export default class AuthBffClient {
   private _axiosAuthBffInstance: AxiosInstance;
 
@@ -91,5 +103,25 @@ export default class AuthBffClient {
     });
 
     return data;
+  }
+
+  @RequestErrorHandler()
+  async editProfile(user: Partial<IUser>, token: string) {
+    await this._axiosAuthBffInstance.patch('/v1/edit-profile', { user }, {
+      headers: {
+        'X-Cig-Token': token
+      }
+    });
+  }
+
+  @RequestErrorHandler()
+  async getProfileData(token: string) {
+    const { data } = await this._axiosAuthBffInstance.get<GetProfileRequestSuccess>('/v1/profile-data', {
+      headers: {
+        'X-Cig-Token': token
+      }
+    });
+
+    return data?.user;
   }
 }
