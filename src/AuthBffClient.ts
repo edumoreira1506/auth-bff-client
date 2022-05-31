@@ -92,4 +92,13 @@ export default class AuthBffClient {
 
     return data;
   }
+
+  @RequestErrorHandler()
+  async editProfile(user: Partial<IUser>, token: string) {
+    await this._axiosAuthBffInstance.patch('/v1/edit-profile', { user }, {
+      headers: {
+        'X-Cig-Token': token
+      }
+    });
+  }
 }
